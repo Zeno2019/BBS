@@ -1,0 +1,34 @@
+block variables
+  - const page_title = "Default Title";
+
+doctype html
+html(lang="en")
+  head
+    // use Unicode
+    meta(charset="utf-8")
+    // force IE to use the lastest rendering engine
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    // force browser to scale the app to the size of window space available
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+
+    block title
+      title= page_title
+
+    block stylesheets
+      link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css", integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd", crossorigin="anonymous")
+
+    // bring support for HTML5 and CSS3 to old IEs
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  body
+    block header
+    block content
+    block footer
+
+    // 注意要先添加jQuery，然后再添加Bootstrap的JS文件
+    block javascripts
+      script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js", integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7", crossorigin="anonymous")

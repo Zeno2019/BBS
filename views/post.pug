@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{post.title} - BBS
+
+    link(rel="stylesheet", href="/common.css")
+    link(rel="stylesheet", href="/post-page.css")
+
+  body
+    include header
+
+    h2= post.title
+    p= post.content
+
+    ul
+      //- 这里 comments 是返回的 data 对象的 comments
+      if (comments.length == 0)
+        p 帖子现在还没有人回复
+      else
+        each comment in comments
+          li
+            a(href=`/user/${comment.user.id}`)= comment.user.name
+            p= comment.content
+            span= new Date(comment.createdAt).toString()
+
+      form(action="/comment" method="post")
+        input(type="hidden" value=post.id name="replyTo")
+        textarea(name="content", cols="30", rows="10")
+        button 提交回复
+
+    include footer

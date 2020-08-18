@@ -1,0 +1,48 @@
+//- doctype html
+
+//- html
+//-   head
+//-     title Homepage - BBS
+
+//-     link(rel="stylesheet" href="/common.css")
+//-     link(rel="stylesheet" href="/home-page.css")
+//-   body
+
+//- |
+//- |
+//- a(href='/post/') 发帖
+
+extends basic-layout
+
+block content
+  link(rel="stylesheet" href="/common.css")
+  link(rel="stylesheet" href="/home-page.css")
+
+  if (user)
+    p
+      h2 你好~ #{user.name}
+    div
+      span.btn
+        a(href="/post") 发帖
+      span.btn
+        a(href="/logout") 退出
+  else
+    p 当前未登录，请登录
+    div
+      span.btn
+        a(href="/register" id='register') 注册
+      span.btn
+        a(href="/login" id='login') 登录
+
+  ul
+    each post in posts
+      li.post-item
+        a(href=`/user/${post.user.id}`)
+          img(src=post.user.avatar, alt=post.user.name)
+          span #{post.user.name}
+        h2
+          a(href=`/post/${post.id}`)= post.title
+        div
+          span 回帖时间: #{new Date(post.createdAt).toString()}
+        div
+          span 回帖数量: #{post.commentCount}

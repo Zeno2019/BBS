@@ -1,0 +1,9 @@
+extends basic-layout
+
+block content
+  p= result
+  if (code == 1)
+    a(href='/login') 跳转登录
+  else
+    button(onclick='history.back()') 后退
+

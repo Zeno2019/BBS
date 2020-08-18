@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title 404 Not Found
+
+    link(rel="stylesheet", href="/common.css")
+  body
+    include header
+    p 您要找的页面已经消失在荒原...
+    p 将在<span class='count-down'>5</span>秒后跳转回首页
+    script.
+      var countDown = 5
+      var countDownSpan = document.querySelector('.count-down')
+
+      setInterval(() => {
+        countDown--
+        countDownSpan.textContent = countDown
+      }, 1000)
+
+      setTimeout(()=> {
+        location.href = '/'
+      }, 5000)
+
+    include footer
